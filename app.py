@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<html><body><h1 style='color:red'>I am hosted on Raspberry Pi v4 !!!</h1></body></html>"
+    return "<html><body><h1 style='color:red'>I am hosted on Raspberry Pi !!!</h1></body></html>"
 
 @app.route("/api/v1.0/test", methods=['GET'])
 def api_get_test():
