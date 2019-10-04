@@ -1,7 +1,12 @@
-import os
 from flask import Flask, jsonify
+import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
+import sqlite3
 
 app = Flask(__name__)
+
+client = mqtt.Client()
+client.connect("localhost", 1883, 60)
 
 @app.route("/")
 def index():
@@ -13,8 +18,8 @@ def api_get_test():
 
 @app.route("/api/v1.0/restart", methods=['GET'])
 def api_get_restart():
-    os.system('reboot')
-    return jsonify({'name':'test'});
+    publish.single("paho/restart", "0", hostname="localhost")
+    return ;
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
